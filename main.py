@@ -15,7 +15,7 @@ client = OpenAI(
     base_url="https://api.groq.com/openai/v1"
 )
 
-def get_ai_response(user_content, system_content="Act like a helpful personal assistant.", temperature=0.7):
+def get_ai_response(user_content, system_content="Act like a helpful personal assistant named AI Sahayak.", temperature=0.7):
     """Safely calls AI model using standard chat completions with responses fallback."""
     try:
         completion = client.chat.completions.create(

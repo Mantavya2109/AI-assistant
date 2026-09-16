@@ -30,15 +30,28 @@ body {
     background-attachment: fixed;
     color: #000000;
     min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: clamp(24px, 5vw, 45px) 16px clamp(60px, 10vw, 110px);
+    justify-content: center;
+    padding: clamp(20px, 4vw, 40px) 16px;
     position: relative;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+}
+
+/* --- App Container for perfect vertical & horizontal centering --- */
+.app-container {
+    width: 100%;
+    max-width: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* --- Floating Glass Bubbles (Layer 1) --- */
@@ -513,8 +526,42 @@ button[type="submit"]:active {
     }
 }
 
+/* --- Footer --- */
+.app-footer {
+    width: 100%;
+    text-align: center;
+    margin-top: clamp(14px, 3vw, 22px);
+    padding: 6px 0;
+    font-size: 0.84rem;
+    color: #4b5563;
+    letter-spacing: -0.01em;
+    z-index: 1;
+}
+
+.app-footer p {
+    margin: 0;
+}
+
+.app-footer strong {
+    color: #111827;
+    font-weight: 700;
+}
+
 /* --- Responsive & Mobile Breakpoints --- */
 @media (max-width: 640px) {
+    body {
+        justify-content: center;
+        padding: 20px 14px;
+    }
+
+    .app-container {
+        margin: auto 0;
+    }
+
+    h1 {
+        margin-bottom: 16px;
+    }
+
     #askForm {
         flex-direction: column;
     }
@@ -545,11 +592,14 @@ button[type="submit"]:active {
 
 @media (max-width: 380px) {
     body {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 16px 10px;
     }
 
     .main-heading {
         padding: 18px 12px;
+    }
+
+    .app-footer {
+        font-size: 0.78rem;
     }
 }
