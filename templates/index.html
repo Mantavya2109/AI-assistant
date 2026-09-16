@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <title>AI Personal Assistant</title>
+    <!-- Marked.js for parsing Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
@@ -17,7 +19,7 @@
             <button type="submit">ASK</button>
         </form>
         <p id="ask-loading" style="display: none;">Loading...</p>
-        <p id="answer"></p>
+        <div id="answer" class="response-container"></div>
 
         <h2>Summarize Email</h2>
         <form id="emailForm">
@@ -25,7 +27,7 @@
             <button type="submit">Summarize</button>
         </form>
         <p id="summary-loading" style="display: none;">Loading...</p>
-        <p id="summary"></p>
+        <div id="summary" class="response-container"></div>
     </div>
 </body>
 <script>
@@ -36,7 +38,7 @@
         let answerEl = document.getElementById("answer");
         
         loading.style.display = "block"; // show loader
-        answerEl.innerText = "";
+        answerEl.innerHTML = "";
 
         try {
             let res = await fetch("/ask", {
@@ -45,9 +47,10 @@
             });
 
             let data = await res.json();
-            answerEl.innerText = data.response || "No response received.";
+            let rawText = data.response || "No response received.";
+            answerEl.innerHTML = typeof marked !== 'undefined' ? marked.parse(rawText) : rawText;
         } catch (err) {
-            answerEl.innerText = "Error communicating with server.";
+            answerEl.innerHTML = "<p>Error communicating with server.</p>";
         } finally {
             loading.style.display = "none";
         }
@@ -60,7 +63,7 @@
         let summaryEl = document.getElementById("summary");
 
         loading.style.display = "block"; // show loader
-        summaryEl.innerText = "";
+        summaryEl.innerHTML = "";
 
         try {
             let res = await fetch("/summarize", {
@@ -69,9 +72,10 @@
             });
 
             let data = await res.json();
-            summaryEl.innerText = data.response || "No response received.";
+            let rawText = data.response || "No response received.";
+            summaryEl.innerHTML = typeof marked !== 'undefined' ? marked.parse(rawText) : rawText;
         } catch (err) {
-            summaryEl.innerText = "Error communicating with server.";
+            summaryEl.innerHTML = "<p>Error communicating with server.</p>";
         } finally {
             loading.style.display = "none";
         }

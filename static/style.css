@@ -323,27 +323,137 @@ button[type="submit"]:active {
 }
 
 /* --- Response Output Boxes --- */
+.response-container:empty,
 #answer:empty,
 #summary:empty {
     display: none;
 }
 
+.response-container:not(:empty),
 #answer:not(:empty),
 #summary:not(:empty) {
     display: block;
     margin-top: 12px;
-    padding: 14px 16px;
+    padding: 16px 18px;
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
     border-left: 4px solid #000000;
     border-radius: 10px;
-    color: #000000;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    white-space: pre-wrap;
+    color: #111827;
+    font-size: 0.92rem;
+    line-height: 1.65;
     word-break: break-word;
     overflow-wrap: break-word;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* Response Container Markdown Styling */
+.response-container p {
+    margin-bottom: 0.75rem;
+}
+
+.response-container p:last-child {
+    margin-bottom: 0;
+}
+
+.response-container h1,
+.response-container h2,
+.response-container h3,
+.response-container h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.response-container h1::before,
+.response-container h2::before,
+.response-container h3::before,
+.response-container h4::before {
+    display: none; /* override card headers */
+}
+
+.response-container h1 { font-size: 1.15rem; }
+.response-container h2 { font-size: 1.05rem; border: none; padding-top: 0; margin-top: 0.8rem; }
+.response-container h3 { font-size: 0.98rem; }
+
+.response-container ul,
+.response-container ol {
+    margin-left: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.response-container li {
+    margin-bottom: 0.25rem;
+}
+
+.response-container hr {
+    border: 0;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 1rem 0;
+}
+
+.response-container blockquote {
+    border-left: 3px solid #d1d5db;
+    padding-left: 12px;
+    margin: 0.75rem 0;
+    color: #4b5563;
+    font-style: italic;
+}
+
+.response-container code {
+    background-color: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85em;
+    color: #111827;
+}
+
+.response-container pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0.75rem 0;
+}
+
+.response-container pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* Markdown Tables */
+.response-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.85rem 0;
+    font-size: 0.86rem;
+    background: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.response-container th,
+.response-container td {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.response-container th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #111827;
+}
+
+.response-container tr:nth-child(even) {
+    background-color: #fafafa;
 }
 
 /* --- Keyframe Animations --- */
