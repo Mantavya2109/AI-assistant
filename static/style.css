@@ -1,0 +1,445 @@
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- HTML & Body --- */
+html {
+    min-height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Aptos', 'Aptos Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #e5e7eb;
+    background-image:
+        radial-gradient(circle at 8% 96%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 130px),
+        radial-gradient(circle at 24% 91%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 90px),
+        radial-gradient(circle at 38% 97%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 140px),
+        radial-gradient(circle at 52% 89%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100px),
+        radial-gradient(circle at 68% 95%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 160px),
+        radial-gradient(circle at 82% 92%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 110px),
+        radial-gradient(circle at 94% 97%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 120px),
+        radial-gradient(circle at 50% 100%, rgba(209, 213, 219, 0.6) 0%, rgba(229, 231, 235, 0) 80%);
+    background-attachment: fixed;
+    color: #000000;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(24px, 5vw, 45px) 16px clamp(60px, 10vw, 110px);
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Floating Glass Bubbles (Layer 1) --- */
+body::before {
+    content: '';
+    position: fixed;
+    bottom: -30px;
+    left: 8%;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 32%, rgba(255, 255, 255, 0.95), rgba(243, 244, 246, 0.4) 65%, rgba(209, 213, 219, 0.25));
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    box-shadow:
+        inset -6px -6px 16px rgba(0, 0, 0, 0.04),
+        inset 6px 6px 16px rgba(255, 255, 255, 0.95),
+        0 15px 35px rgba(0, 0, 0, 0.05),
+        190px -40px 0 -15px rgba(255, 255, 255, 0.85),
+        380px 20px 0 25px rgba(255, 255, 255, 0.8),
+        600px -30px 0 -5px rgba(255, 255, 255, 0.85),
+        820px 10px 0 20px rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatBubbles1 8s ease-in-out infinite alternate;
+}
+
+/* --- Floating Glass Bubbles (Layer 2) --- */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -50px;
+    right: 10%;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.92), rgba(243, 244, 246, 0.35) 70%, rgba(209, 213, 219, 0.2));
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+        inset -8px -8px 20px rgba(0, 0, 0, 0.04),
+        inset 8px 8px 20px rgba(255, 255, 255, 0.9),
+        0 20px 40px rgba(0, 0, 0, 0.05),
+        -200px 30px 0 -25px rgba(255, 255, 255, 0.85),
+        -420px -35px 0 10px rgba(255, 255, 255, 0.8),
+        -650px 15px 0 -15px rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatBubbles2 10s ease-in-out infinite alternate;
+}
+
+/* --- Floating Drone Bot in Background --- */
+html::after {
+    content: '';
+    position: fixed;
+    top: 60px;
+    right: max(20px, 6vw);
+    width: 44px;
+    height: 38px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    background-image:
+        radial-gradient(circle at 32% 52%, #000000 3px, transparent 4px),
+        radial-gradient(circle at 68% 52%, #000000 3px, transparent 4px),
+        linear-gradient(to right, #000000, #000000);
+    background-size: auto, auto, 14px 2px;
+    background-position: 0 0, 0 0, center 72%;
+    background-repeat: no-repeat;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        -6px 10px 0 -3px #000000,
+        6px 10px 0 -3px #000000,
+        0 -12px 0 -3px #000000;
+    pointer-events: none;
+    z-index: 1;
+    animation: robotFloatDrone 4s ease-in-out infinite alternate;
+}
+
+/* --- Title (h1) with Animated Robot Mascot --- */
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.3rem);
+    font-weight: 800;
+    color: #000000;
+    letter-spacing: -0.03em;
+    margin-bottom: 22px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 620px;
+}
+
+/* Robot Head Above Header */
+h1::before {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 36px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 11px;
+    position: relative;
+    /* Eyes & Smile */
+    background-image:
+        radial-gradient(circle at 32% 50%, #000000 2.5px, transparent 3.5px),
+        radial-gradient(circle at 68% 50%, #000000 2.5px, transparent 3.5px),
+        linear-gradient(to right, #000000, #000000);
+    background-size: auto, auto, 13px 2px;
+    background-position: 0 0, 0 0, center 72%;
+    background-repeat: no-repeat;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08),
+        -6px 9px 0 -3px #000000,
+        6px 9px 0 -3px #000000,
+        0 -12px 0 -3px #000000;
+    animation: robotHover 3s ease-in-out infinite alternate;
+}
+
+/* --- Main Card Container (.main-heading) --- */
+.main-heading {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 620px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
+    border-radius: clamp(14px, 3vw, 20px);
+    padding: clamp(20px, 4vw, 36px) clamp(16px, 4vw, 32px);
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+        0 20px 45px -12px rgba(0, 0, 0, 0.08),
+        0 4px 12px rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 #ffffff;
+    transition: box-shadow 0.25s ease;
+}
+
+/* --- Section Headings (h2) --- */
+h2 {
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    border-radius: 4px;
+    background-color: #000000;
+    flex-shrink: 0;
+}
+
+h2:not(:first-child) {
+    margin-top: clamp(24px, 4vw, 34px);
+    padding-top: clamp(20px, 3.5vw, 26px);
+    border-top: 1px solid #e5e7eb;
+}
+
+/* --- Forms --- */
+form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+#askForm {
+    flex-direction: row;
+}
+
+#emailForm {
+    flex-direction: column;
+}
+
+/* --- Inputs & Textarea --- */
+input[type="text"],
+textarea {
+    width: 100%;
+    background-color: #f9fafb;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 16px;
+    /* Prevents auto-zoom on iOS mobile */
+    font-weight: 500;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    background-color: #ffffff;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* --- Buttons --- */
+button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding: 12px 22px;
+    min-height: 46px;
+    /* Touch-friendly size */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button[type="submit"]:hover {
+    background-color: #1f2937;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#emailForm button[type="submit"] {
+    align-self: flex-end;
+    min-width: 140px;
+}
+
+/* --- Loading States --- */
+#ask-loading,
+#summary-loading {
+    color: #374151;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 8px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    border-left: 3px solid #000000;
+}
+
+/* --- Response Output Boxes --- */
+#answer:empty,
+#summary:empty {
+    display: none;
+}
+
+#answer:not(:empty),
+#summary:not(:empty) {
+    display: block;
+    margin-top: 12px;
+    padding: 14px 16px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #000000;
+    border-radius: 10px;
+    color: #000000;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* --- Keyframe Animations --- */
+@keyframes robotHover {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(-12px) rotate(-1deg);
+    }
+}
+
+@keyframes robotFloatDrone {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translateY(-14px) rotate(-4deg) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(-26px) rotate(3deg) scale(0.98);
+    }
+}
+
+@keyframes floatBubbles1 {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-24px) scale(1.03);
+    }
+
+    100% {
+        transform: translateY(-45px) scale(0.97);
+    }
+}
+
+@keyframes floatBubbles2 {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.04);
+    }
+
+    100% {
+        transform: translateY(-55px) scale(1.01);
+    }
+}
+
+/* --- Responsive & Mobile Breakpoints --- */
+@media (max-width: 640px) {
+    #askForm {
+        flex-direction: column;
+    }
+
+    #askForm button[type="submit"],
+    #emailForm button[type="submit"] {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    html::after {
+        display: none;
+        /* Hide background drone on mobile to keep focus on card */
+    }
+
+    body::before {
+        width: 100px;
+        height: 100px;
+        left: 2%;
+    }
+
+    body::after {
+        width: 130px;
+        height: 130px;
+        right: 2%;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .main-heading {
+        padding: 18px 12px;
+    }
+}

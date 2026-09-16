@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>AI Personal Assistant</title>
+</head>
+
+<body>
+    <h1>Hello from AI Assistant</h1>
+    <div class="main-heading">
+        <h2>Ask me anything</h2>
+        <form id="askForm">
+            <input type="text" name="question" placeholder="Ask your Query" required>
+            <button type="submit">ASK</button>
+        </form>
+        <p id="ask-loading" style="display: none;">Loading...</p>
+        <p id="answer"></p>
+
+        <h2>Summarize Email</h2>
+        <form id="emailForm">
+            <textarea type="text" name="email" placeholder="Place your Email" required></textarea>
+            <button type="submit">Summarize</button>
+        </form>
+        <p id="summary-loading" style="display: none;">Loading...</p>
+        <p id="summary"></p>
+    </div>
+</body>
+<script>
+    document.getElementById("askForm").onsubmit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.target);
+        let loading = document.getElementById("ask-loading");
+        let answerEl = document.getElementById("answer");
+        
+        loading.style.display = "block"; // show loader
+        answerEl.innerText = "";
+
+        try {
+            let res = await fetch("/ask", {
+                method: "POST",
+                body: formData
+            });
+
+            let data = await res.json();
+            answerEl.innerText = data.response || "No response received.";
+        } catch (err) {
+            answerEl.innerText = "Error communicating with server.";
+        } finally {
+            loading.style.display = "none";
+        }
+    };
+
+    document.getElementById("emailForm").onsubmit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.target);
+        let loading = document.getElementById("summary-loading");
+        let summaryEl = document.getElementById("summary");
+
+        loading.style.display = "block"; // show loader
+        summaryEl.innerText = "";
+
+        try {
+            let res = await fetch("/summarize", {
+                method: "POST",
+                body: formData
+            });
+
+            let data = await res.json();
+            summaryEl.innerText = data.response || "No response received.";
+        } catch (err) {
+            summaryEl.innerText = "Error communicating with server.";
+        } finally {
+            loading.style.display = "none";
+        }
+    };
+</script>
+
+</html>
